@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+   <context:component-scan base-package="com.kim.biz.controller" />
+   
+   
+   
+   
+   
+   <!-- HM 등록 -->
+   <!--  
+   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+   		<property name="mappings">
+   			<props>
+   			<prop key="/login.do">login </prop>
+   			<prop key="/main.do">main </prop>
+   			<prop key="/board.do">board </prop>
+   			<prop key="/logout.do">logout </prop>
+   			<prop key="/mypage.do">mypage </prop>
+   		   	</props>
+  	 </property>
+   </bean>
+   -->
+   
+   <!-- Controller 객체 등록 -->
+   <!--  
+   <bean id="login" class="com.kim.biz.controller.LoginController"></bean>
+   <bean id="main" class="com.kim.biz.controller.MainController"></bean>
+   <bean id="board" class="com.kim.biz.controller.BoardController"></bean>
+   <bean id="logout" class="com.kim.biz.controller.LogoutController"></bean>
+   <bean id="mypage" class="com.kim.biz.controller.MypageController"></bean>
+   <bean id="boardDAO" class="com.kim.biz.board.impl.BoardDAO2"></bean>
+   <bean id="memberDAO" class="com.kim.biz.member.impl.MemberDAO2"></bean>
+   -->
+   
+   	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="kim" />
+		<property name="password" value="1234" />
+	</bean>
+	<!-- Spring JDBC 설정하기 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- ViewResolver 등록 -->
+	<!-- 
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/view/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+   -->
+  
+   
+      
+   
+</beans>
