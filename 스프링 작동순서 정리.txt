@@ -1,0 +1,20 @@
+1. 스프링 기본설정하기 ( JDK, 서버 , 등 )
+
+2. pom.xml 설정하기 ( java-version, DBCP, AOP, 등 jar를 넣어주는 설정 파일)
+
+3. web.xml 설정하기 ( 특정 요청이 있을 때 DispatcherServlet을 참조하도록 = *.do 요청이 있을 때 , Encoding 설정 )
+
+4. Dispatcherservlet 설정하기 ( context:component-scan base-package 네임스페이스로 패키지 스캔하기 )
+
+5. VO와 DAO(핵심로직) 만들고 , AOP ( 횡단관심과 연결 ) -> DAO가 실질적으로 메서드를 사용하는 것이 아니니 참조할 수 있게 @Repasitory 어노테이션 사용
+			    = @Aspect / @PointCut , 연결될 메서드에도 @Aspect와 @Before등 결합시점 연결
+
+6. 컨트롤러 생성 	- 클래스 상단에 @Controller 어노테이션 사용
+                	- @RequestMapping = 어떠한 요청에 어떠한 로직을 수행할지 Mapping
+	        	-  해당 컨트롤러 클래스에서 기억해야 할 모델데이터가 있으면 상단에 @SessionAttribute(해당이름) = 사용으로 modelattribute에 대한 null 업데이트 이슈 방지가능
+                   	- @Requestparam = Command 객체에 없는 파라미터를 컨트롤러 클래스에 전달
+	      	- @ModelAttribute = View에서 사용할 데이터를 무엇이라 부를지 컨트롤러에서 지정해줌
+				        RequestMapping보다 먼저 호출
+				        실행 후 Model에 저장되기 때문에 View에서 사용 가능
+				        메서드인자(command 객체) 앞에 @ModelAttribute가 붙으면 그 command객체가 model에 있는 정보와 같다는 설정이 됨
+				
