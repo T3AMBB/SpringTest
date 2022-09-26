@@ -1,0 +1,7 @@
+2-Layerd 아키텍쳐 사용
+
+★ 비즈니스 컴포넌트
+★ 각 Controller에서 ServiceImpl가 아닌 Service 를 사용한 이유!
+	→ 어노테이션 @Service를 각 Service 클래스에 했기 때문에, 즉 Interface 클래스는 메서드를 강제했고 그 메서드가 있는 것을 알기 때문에 
+	Controller에서 Service를 사용하고, 그것을 사용했을 때 @ 어노테이션에 의해 Serivce에 있는 메서드를 사용할 수 있다.
+	그리고 Service에 있는 메서드들은 dao2의 repository를 @Autowried 하여 사용하게 됨  
