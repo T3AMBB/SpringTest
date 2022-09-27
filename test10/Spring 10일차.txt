@@ -1,0 +1,44 @@
+pom.xml = jar나 라이브러리 등록용
+web.xml = sevlet류 = 서블릿 , 필터 , 리스너
+applicationContext = 일반 java 객체용 
+DispatcherServlet = 
+
+[ 파일 업로드 ] 
+1. View
+	<form action="insert.do" method="post" enctype="Miltipart/form-data">
+	<input type="file" id="uploadFile" />
+	등록한 이미지 미리보기 = JS
+
+2. Command 객체(bVO)
+	객체에 멤버변수 Spirng 내장객체 MultipartFile 추가 
+
+3. FileUpload 라이브러리(.jar) 추가 
+	로직에서 jar파일을 필요로 하기 때문에 pom.xml에 추가, 2개의 jar 파일이 들어올 것임
+		<!-- FileUpload -->
+		
+	      <dependency>
+      		   <groupId>commons-fileupload</groupId>
+       		  <artifactId>commons-fileupload</artifactId>
+      		   <version>1.3.1</version>
+   	   </dependency>
+
+
+4. MultipartResolver 설정
+	DispatcherServlet-servlet.xml
+
+	<!-- 파일 업로드 관련 설정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
+	</bean>
+		<세터주입, DI , value= -1이면 파일크기 무제한 />
+
+
+5. View --데이터 -->> Command 객체에 세팅
+	이 과정에서 내부적으로 new MF();  해야함
+	중간과정에서의 new MF();  : 스프링 컨테이너가 관리한다.
+		업로드 한 파일명
+		uploadFile.getOriginalFilename();
+		업로드 한 파일을 지정한 경로에 따로 저장
+		uploadFile.transferTO(new File("경로"+파일명));
+		업로드 한 파일 존재여부 확인
+		uploadFile.isEmty() 
