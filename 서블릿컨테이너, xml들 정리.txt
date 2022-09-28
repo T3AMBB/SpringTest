@@ -26,6 +26,7 @@ ApplicationContext를 생성하는 역할을 수행한다.
 
 3. 생성된 ContextLoaderListener는 applicationContext.xml을 로딩한다.
 
+
 4. applicationContext.xml에 등록되어 있는 설정에 따라 Spring Container가 구동된다. 이때 개발자가 작성한 비즈니스 로직에 대한 부분과 DAO, VO 객체들이 생성된다.
 
 5. 클라이언트로부터 웹애플리케이션 요청이 온다.
@@ -34,10 +35,14 @@ ApplicationContext를 생성하는 역할을 수행한다.
 클라이언트로부터 요청 온 메시지를 분석하여 알맞은 PageController에게 전달하고 응답을 받아 요청에 따른 응답을 어떻게 할지 결정만 한다.
 실질적인 작업은 PageController에서 이뤄지기 때문이다. 이러한 클래스들을 HandlerMapping, ViewResolver 클래스라고 한다.
 
-7. DispatcherServlet은 servlet-context.xml(spring-mvc.xml)을 로딩한다.
+★ 7. DispatcherServlet은 servlet-context.xml(spring-mvc.xml)을 로딩한다. DispatcherServlet이 Spring Container인 DispatcherServlet-servlet.xml을 로딩하는 것 ★
 
 8. 두번째 Spring Container가 구동되면 응답에 맞는 PageController들이 동작한다.
 이때 첫번째 Spring Container가 구동되면서 생성된 DAO, VO, ServiceImpl 클래스들과 협업하여 알맞은 작업을 처리하게 된다.
+
+
+
+root = applicationContext
 
 
 
