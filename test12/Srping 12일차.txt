@@ -1,0 +1,22 @@
+[다국어 처리(국제화)]
+   하나의 페이지를 여러가지의 언어로 서비스하는 것
+   과거에는 언어별로 페이지를 다르게 제작함
+    -> 프레임워크의 다국어처리기능을 사용(별도 페이지 제작 xxx)
+
+1) 메세지 파일 제작
+   .properties
+   언어 선택을 Locale 코드 정보로 수행
+   파일명에 언어에 해당하는 Locale 코드를 추가
+   ex) xxx_en.properties, xxx_ko.properties, ...
+   파일 내부에는 메세지 키+메세지 값을 작성
+   유니코드로 작성
+2) 스프링설정파일에게 메세지 파일들을 읽어들일수있도록 클래스 추가
+   DS.xml에 MessageSource 클래스 <bean> 등록
+3) Locale 정보를 알아서 판단해줄 LocaleResolver 등록
+   SessionLocaleResolver
+4) Locale 정보를 변경해서 사용하고싶을때?
+   LocaleChangeInterceptor 클래스 등록
+   lang 파라미터로 Locale 정보를 변경
+5) 사용해보자!
+   <%@ taglib prefix="spring" %>
+   <spring:message code="메세지 키" />
