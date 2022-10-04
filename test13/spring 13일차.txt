@@ -1,0 +1,39 @@
+[Mybatis 프레임워크]
+Ibatis라는 이름으로 시작됨
+※ 사용이유
+ 1) DB연동을 담당하는 JAVA 코드를 1~2줄로 줄일수있음 [가독성]
+ 2) SQL 문은 JAVA 코드에서 분리하여 XML 파일로 별도 관리 가능 [응집도 ↑]
+※ 팀 프로젝트에 적용하는 방법?
+ 1) 우리가 어필해야하는것은 여러가지 버전의 DAO를 빠르게 교체가능
+   Service -> [2 layered 아키텍처]
+ 2) 상대적으로 간단한 기능들의 CRUD를 Mybatis로 구현
+   MybatisDAO를 제작
+ 3) 상대적으로 복잡한 기능들의 CRUD는 기존의 JDBC or JDBCTemplate으로 구현
+※ 동작방법
+ 1) XML 파일에 저장된 SQL 문을 실행
+ 2) 실행의 결과를 VO(JAVA객체)에 자동으로 매핑까지 수행함
+※ 설정
+ 1) 플러그인 설치 x 2
+ 2) pom.xml에 라이브러리 파일 x 2
+ 3) DB 연동에 필요한 SQL 문을 XML 파일에 저장
+   src/main/resources
+   mappings
+   board-mapping.xml
+    => SQL 문들을 저장한 파일
+ 4) sql-map-config.xml 작성
+   Spring 연동없이 사용하기위해서는 직접 DB연동정보를 작성해야함
+      db.properties
+   Spring과 연동할때에는 DB연동정보가 있기때문에 별도 작성 xxx
+
+
++) resultMap 속성
+
++ CDATA (문자데이터 )
+Mybatis 문법 XXX
+XML 문법 O
+XML 파서가 해석을 통해 설정을 이해함
+CDARA 영역을 설정하면, 그 영역은 XML 파서가 해석하지 않음
+
+
+
+[Mybatis 프레임워크를 Spring에 연동]
