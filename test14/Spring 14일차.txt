@@ -1,0 +1,9 @@
+[ Mybatis 프레임워크를 Spring에 연동 ]
+ 	Mybatis에서 Spring에게 연동에 필요한 api를 제공
+1) pom.xml에 dependency 추가
+2) db.properties 파일 삭제 ( 이미 Datasource가 스프링 설정파일에 등록되어있기 때문에 -> applicationContext.xml)
+		         ( 스프링 설정 파일에서 "dataSource"로 등록되어있음 )
+3) SqlSessionFactory 클래스(우리 실습 내용에서는 SqlSessionBeam)를 스프링 설정파일에 <bean> 등록해야함
+  => SqlSessionFactory 객체로부터 DB연동에 사용할 SqlSession 객체를 얻기 위해
+4) Mybatis를 이용한 DAO 클래스를 구현할 준비완료
+5) 멤버변수 mybatis에게 SqlSessionTemplate 클래스를 <bean> 등록하여 DI
